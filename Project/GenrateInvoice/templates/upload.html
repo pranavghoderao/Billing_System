@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/css/bootstrap-grid.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css" media="all">
+    <title>UploadDetails</title>
+</head>
+
+<body class="bg-dark text-info">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <br>
+                <br>
+                <p class="h2">Feed Customer Details..</p>
+                <br>
+                <form method="POST" action="/uploadCust" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Customer Name</label>
+                        {{ cust.name }}
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your details with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Address</label>
+                        {{ cust.address }}
+                    </div>
+                    <div class="form-group ">
+                        <label for="exampleInputEmail1">PAN Number</label>
+                        {{ cust.panNo }}
+                    </div>
+                    <div class="form-group ">
+                        <label for="exampleInputEmail1">GSTIN Number</label>
+                        {{ cust.Gstin }}
+                    </div>
+                    <button type="submit" name="CustomerSubmit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="col">
+                <br>
+                <br>
+                <p class="h2">Feed Product Details..</p>
+                <br>
+                <form method="POST" action="/uploadCust" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Product Name</label>
+                        {{ prod.prodName }}
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Product Code</label>
+                        {{ prod.prodCode }}
+                    </div>
+                    <button type="submit" name="ProductSubmit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

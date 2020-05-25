@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/css/bootstrap-grid.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css" media="all">
+    <title>Invoice</title>
+</head>
+
+<body class="bg-dark text-info ">
+    <div class="container  ">
+        <div class="row ">
+            <h1 class="h3 text-center">Invoice</h1>
+        </div>
+        <div class="row">
+            <h1 class="h3 text-left">NETU METAL INDUSTRIES</h1>
+        </div>
+        <div class="row">
+            <p class="text-left">Fac :Survey NO 802,Chagur Village,Nandigram Mandal,R.R Dist -509325
+                <br /> Hyd. Off :Plot No .32.Industrial Estate</p>
+
+
+
+        </div>
+        <div class="row">
+            <p class="h3 text-left">Billed To:</p>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="h4 text-left">{{ info.cust.name }}
+                    <br />{{ info.cust.address }}
+                    <br />PAN NO: {{ info.cust.panNo }}
+                    <br />GSTIN: {{ info.cust.Gstin }} </p>
+            </div>
+            <div class="col">
+                <p class="h4 text-left"> Invoice NO: {{ info.BillNo }} </p>
+            </div>
+            <div class="col">
+                <p class="h4 text-left"> Date: {{ info.date }} </p>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-bordered border border-info">
+                <thead class=" h3 text-info">
+                    <tr>
+
+                        <th scope="col">Product</th>
+                        <th scope="col">Rate</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody class=" h4 text-info">
+                    {% for p,r,q in info.prodinfo %}
+                    <tr>
+
+                        <td>{{ p }}</td>
+                        <td>{{ r }}</td>
+                        <td>{{ q }}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <table class="table table-borderless">
+                <tbody class=" h4 text-info">
+                    <tr>
+
+                        <td>Total: {{ info.sum }}</td>
+                    </tr>
+                    {% if info.check == 1 %}
+                    <tr>
+                        <td>CGST: {{ info.cgst }}%</td>
+                        <td>SGST: {{ info.sgst }}%</td>
+                    </tr>
+                    
+                    {% else %}
+                    <tr>
+                        <td>IGST: {{ info.igst }}%</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td>Amount: {{ info.amt }}%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+        
+
+    </div>
+
+    <div class="container">
+        <script>
+             function getbill() {
+                window.print();
+            }
+        </script>
+        </br>
+    </br>
+</br>
+</br>
+
+        <button  name="GentrateInvoice" class="btn btn-primary" onclick="getbill(); return false;">Print</button>
+         
+    </div>
+</body>
+
+</html>

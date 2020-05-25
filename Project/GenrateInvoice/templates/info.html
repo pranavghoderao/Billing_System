@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/css/bootstrap-grid.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css" media="all">
+    <title>Get Info</title>
+</head>
+
+<body class="bg-dark text-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <br>
+                <br>
+                <p class="h2"> Create Invoice..</p>
+                <br>
+                <form method="POST" action="/invoice" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Customer Name</label>
+                        <input type="text" class="form-control" name="custname" placeholder="custname">
+                        <small id="emailHelp" class="form-text text-muted">Please enter the name same as shown in the
+                            list..</small>
+                    </div>
+
+
+                    <p class="h2"> Select the Respected Products Only..!</p>
+                    {% for p in prod %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="pname" value=" {{ p.prodName }} "
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            {{ p.prodName }}
+                        </label>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="inputEmail4">Rate</label>
+                            <input type="number" class="form-control" placeholder="Rate" name="rate">
+                        </div>
+                        <div class="col">
+                            <label for="inputEmail4">Quantity</label>
+                            <input type="number" class="form-control" placeholder="Quantity" name="quantity">
+                        </div>
+                    </div>
+
+
+                    {% endfor %}
+                    <p class="h2"> Click if within the Sate of Telengana..</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="state" value="state"
+                        id="defaultCheck1"> 
+                    </div>
+                    <br>
+                    <button type="submit" name="GentrateInvoice" class="btn btn-primary">Genrate Invoice</button>
+
+                </form>
+            </div>
+            <div class="col">
+                <br>
+                <br>
+                <p class="h2"> Available Customers..</p>
+                <ul class="list-group list-group-flush">
+                    {% for c in cust %}
+                    <li class="list-group-item bg-dark">{{ c.name }}</li>
+                    {% endfor %}
+                </ul>
+
+                <a href="/uploadCust" class="btn btn-primary"> Add a new Customer OR Product </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
