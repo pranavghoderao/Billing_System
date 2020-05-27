@@ -22,7 +22,7 @@
                 <form method="POST" action="/invoice" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Customer Name</label>
+                        <label for="exampleInputEmail1" class="h2">Customer Name</label>
                         <input type="text" class="form-control" name="custname" placeholder="custname">
                         <small id="emailHelp" class="form-text text-muted">Please enter the name same as shown in the
                             list..</small>
@@ -30,26 +30,27 @@
 
 
                     <p class="h2"> Select the Respected Products Only..!</p>
+                </br>
                     {% for p in prod %}
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="pname" value=" {{ p.prodName }} "
                             id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
+                        <label class="form-check-label h4 text-info" for="defaultCheck1">
                             {{ p.prodName }}
                         </label>
                     </div>
-
+<br>
                     <div class="row">
                         <div class="col">
-                            <label for="inputEmail4">Rate</label>
+                            <label for="inputEmail4 h5" class="h5">Rate</label>
                             <input type="number" class="form-control" placeholder="Rate" name="rate">
                         </div>
                         <div class="col">
-                            <label for="inputEmail4">Quantity</label>
+                            <label for="inputEmail4" class="h5">Quantity</label>
                             <input type="number" class="form-control" placeholder="Quantity" name="quantity">
                         </div>
                     </div>
-
+<br>
 
                     {% endfor %}
                     <p class="h2"> Click if within the Sate of Telengana..</p>
@@ -57,6 +58,7 @@
                         <input class="form-check-input" type="checkbox" name="state" value="state"
                         id="defaultCheck1"> 
                     </div>
+                    <br>
                     <br>
                     <button type="submit" name="GentrateInvoice" class="btn btn-primary">Genrate Invoice</button>
 
@@ -66,12 +68,15 @@
                 <br>
                 <br>
                 <p class="h2"> Available Customers..</p>
+                <br>
+                <br>
                 <ul class="list-group list-group-flush">
                     {% for c in cust %}
-                    <li class="list-group-item bg-dark">{{ c.name }}</li>
+                    <li class="list-group-item bg-dark h3">{{ c.name }}</li>
                     {% endfor %}
                 </ul>
-
+<br>
+<br>
                 <a href="/uploadCust" class="btn btn-primary"> Add a new Customer OR Product </a>
             </div>
         </div>
